@@ -1,6 +1,6 @@
-# Layanan Parfum CusGan
+# Virtual Personality Test
 
-Layanan Parfum CusGan dikembangkan untuk menciptakan wewangian yang dipersonalisasi berdasarkan karakteristik kepribadian pengguna. Layanan ini menggunakan arsitektur mikro yang dapat melakukan uji kepribadian dan menentukan wewangian yang cocok untuk pengguna. Layanan ini diimplementasikan menggunakan FastAPI dan mendukung operasi CRUD (Create, Read, Update, Delete) untuk mengelola data kepribadian.
+Personality test untuk Customize Fragrance (CusGan) dikembangkan untuk menciptakan parfum yang dipersonalisasi berdasarkan karakteristik kepribadian pengguna. Layanan ini diimplementasikan menggunakan FastAPI dan mendukung operasi CRUD (Create, Read, Update, Delete) untuk mengelola data kepribadian.
 
 ## Fitur
 
@@ -35,3 +35,8 @@ Layanan Parfum CusGan dikembangkan untuk menciptakan wewangian yang dipersonalis
 
 ```http
 GET /personality
+
+### Mengambil Kepribadian Spesifik
+
+```http
+GET /personality/{item_id}
