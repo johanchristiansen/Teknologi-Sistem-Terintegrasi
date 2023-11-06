@@ -1,7 +1,6 @@
-```markdown
-# Layanan Parfum CusGan
+# Virtual Personality Test
 
-Layanan Parfum CusGan didesain untuk membantu dalam menciptakan parfum yang dipersonalisasi berdasarkan karakteristik kepribadian pengguna. Layanan ini menggunakan arsitektur berbasis mikro untuk melakukan uji kepribadian dan menentukan parfum yang sesuai untuk pengguna. Layanan ini diimplementasikan menggunakan FastAPI dan mendukung berbagai operasi CRUD (Create, Read, Update, Delete) untuk mengelola data kepribadian.
+Personality test untuk Customize Fragrance (CusGan) dikembangkan untuk menciptakan parfum yang dipersonalisasi berdasarkan karakteristik kepribadian pengguna. Layanan ini diimplementasikan menggunakan FastAPI dan mendukung operasi CRUD (Create, Read, Update, Delete) untuk mengelola data kepribadian.
 
 ## Fitur
 
@@ -85,7 +84,7 @@ Gunakan metode ini untuk menghapus profil kepribadian berdasarkan ID mereka. Gan
 
 1. Clone repository.
 2. Instal dependensi yang diperlukan dengan perintah: `pip install -r requirements.txt`.
-3. Jalankan aplikasi FastAPI dengan: `uvicorn app:app --reload`.
+3. Jalankan aplikasi FastAPI dengan: `uvicorn personality:app --reload`.
 
 ## Struktur Data
 
@@ -105,10 +104,10 @@ Layanan mengelola data kepribadian dengan struktur berikut:
 
 Layanan menyimpan dan mengambil data dari file JSON yang bernama `personality.json`.
 
-## Catatan
+## Deployment
 
-- Pastikan autentikasi dan otorisasi yang tepat diimplementasikan untuk penggunaan produksi.
-- Selalu tangani respons dan error sesuai dengan kode status HTTP dan struktur JSON yang diharapkan.
+Layanan dapat diakses pada https://cusgan.azurewebsites.net/
+Untuk mengakses dokumentasi yang diberikan dari FastAPI dapat diakses di https://cusgan.azurewebsites.net/docs
 
 Anda dapat meningkatkan keamanan, validasi, dan penanganan error berdasarkan kebutuhan aplikasi dan spesifikasi Anda.
 ```
