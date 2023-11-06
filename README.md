@@ -34,9 +34,8 @@ Personality test untuk Customize Fragrance (CusGan) dikembangkan untuk menciptak
 ### Mengambil Semua Kepribadian
 
 ```http
-GET /personality```
+GET /personality
 
-### Mengambil Kepribadian Spesifik
+Mengambil Kepribadian Spesifik
 
-```http
-GET /personality/{item_id}```
+GET /personality/{item_id}
