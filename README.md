@@ -106,7 +106,7 @@ Layanan menyimpan dan mengambil data dari file JSON yang bernama `personality.js
 
 ## Deployment
 
-- Layanan dapat diakses pada https://cusgan.azurewebsites.net/
-- Untuk mengakses dokumentasi yang diberikan dari FastAPI dapat diakses di https://cusgan.azurewebsites.net/docs
+- Layanan dapat diakses pada customizefragrance.azurewebsites.net
+- Untuk mengakses dokumentasi yang diberikan dari FastAPI dapat diakses di customizefragrance.azurewebsites.net/docs
 
 Anda dapat meningkatkan keamanan, validasi, dan penanganan error berdasarkan kebutuhan aplikasi dan spesifikasi Anda.
