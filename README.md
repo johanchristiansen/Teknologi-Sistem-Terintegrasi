@@ -3,7 +3,7 @@
 
 ## Latar Belakang
 
-CusGan adalah aplikasi parfum kustom yang memungkinkan pengguna menciptakan wewangian yang sesuai dengan karakteristik kepribadian mereka. Aplikasi ini menggunakan mikroservis untuk melakukan tes kepribadian dan menentukan kombinasi wewangian yang cocok. Pengguna dapat menambahkan, memperbarui, menghapus, dan melihat profil kepribadian mereka.
+CusGan adalah aplikasi parfum kustom yang memungkinkan pengguna menciptakan wewangian yang sesuai dengan karakteristik kepribadian mereka. Aplikasi ini menggunakan mikroservis untuk melakukan tes kepribadian dan menentukan kombinasi wewangian yang cocok. Pengguna dapat menambahkan, memperbarui, menghapus, dan melihat profil kepribadian para pelanggan.
 
 ## Autentikasi
 
