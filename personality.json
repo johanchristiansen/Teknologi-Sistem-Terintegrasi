@@ -1,1 +1,20 @@
-{"personality": [{"Nama": "Damian", "Id": 1, "Umur": 40, "Pekerjaan": "Wiraswasta", "Deskripsi_Kepribadian": ["Cool", "Elegant", "Berpikir kritis"], "Kombinasi_Fragrance": ["Bergamot", "Oud", "Amber"]}, {"Nama": "Anisa", "Id": 2, "Umur": 18, "Pekerjaan": "Siswa", "Deskripsi_Kepribadian": ["Ceria", "Energetik"], "Kombinasi_Fragrance": ["Coconut", "Caramel"]}]}
+{"personality": [
+    {
+        "Nama": "Damian", 
+        "Id": 1, 
+        "Umur": 40, 
+        "Pekerjaan": "Wiraswasta", 
+        "Deskripsi_Kepribadian": ["Cool", "Elegant", "Berpikir kritis"], 
+        "Kombinasi_Fragrance": ["Bergamot", "Oud", "Amber"]}, 
+    {
+        "Nama": "Anisa", 
+        "Id": 2, 
+        "Umur": 18, 
+        "Pekerjaan": "Siswa", 
+        "Deskripsi_Kepribadian": ["Ceria", "Energetik"], 
+        "Kombinasi_Fragrance": ["Coconut", "Caramel"]}
+    ]
+}
+
+
+
