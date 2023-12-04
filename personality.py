@@ -6,6 +6,8 @@ from jose import JWTError, jwt
 from datetime import datetime, timedelta
 import json
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+
 
 class PersonalityItem(BaseModel):
     Nama: str
@@ -13,9 +15,24 @@ class PersonalityItem(BaseModel):
     Umur: int
     Pekerjaan: str
     Deskripsi_Kepribadian: List[str]
-    Kombinasi_Fragrance: list
+    Kombinasi_Fragrance: List[str]
+
+class UpdatePersonalityDescription(BaseModel):
+    Nama: str
+    Deskripsi_Kepribadian: List[str]
+
+class UserRegistration(BaseModel):
+    username: str
+    password: str
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Update with the actual origin of your React app
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Secret Key for JWT
 SECRET_KEY = "your-secret-key"
@@ -49,6 +66,10 @@ personality_json_filename = "personality.json"
 with open(personality_json_filename , "r") as read_file:
     personality_data = json.load(read_file)
 
+notes_json_filename = "notes.json"
+with open(notes_json_filename, "r") as read_file:
+    notes_data = json.load(read_file)
+
 def verify_user_credentials(username: str, password: str):
     with open("users.json", "r") as users_file:
         users_data = json.load(users_file)
@@ -81,10 +102,17 @@ async def add_personality(
 ):
     item_dict = item.dict()
     item_found = False
+
+    # Update the Kombinasi_Fragrance based on Deskripsi_Kepribadian
+    for desc in item_dict['Deskripsi_Kepribadian']:
+        for note in notes_data['notes']:
+            if note['Deskripsi_Kepribadian'] == desc:
+                item_dict['Kombinasi_Fragrance'].append(note['Kombinasi_Fragrance'])
+
     for person in personality_data['personality']:
         if person['Id'] == item_dict['Id']:
             item_found = True
-            return f"Person with Age {item_dict['Umur']} exists."
+            return f"Person with Age {item_dict['Id']} exists."
 
     if not item_found:
         personality_data['personality'].append(item_dict)
@@ -95,6 +123,32 @@ async def add_personality(
     raise HTTPException(
         status_code=404, detail=f'Person not found'
     )
+
+
+@app.post('/register')
+async def register_user(
+    registration_data: UserRegistration
+):
+    new_username = registration_data.username
+    new_password = registration_data.password
+
+    # Check if the username is already taken
+    with open("users.json", "r") as users_file:
+        users_data = json.load(users_file)
+        for user in users_data["users"]:
+            if user["username"] == new_username:
+                raise HTTPException(
+                    status_code=400, detail=f"Username {new_username} is already taken. Choose a different username."
+                )
+
+    # Add the new user to the users.json file
+    new_user = {"username": new_username, "password": new_password}
+    users_data["users"].append(new_user)
+    with open("users.json", "w") as users_file:
+        json.dump(users_data, users_file)
+
+    return {"message": f"User {new_username} registered successfully."}
+
 
 @app.put('/personality')
 async def update_personality(
@@ -117,6 +171,40 @@ async def update_personality(
     raise HTTPException(
         status_code=404, detail=f'Person not found'
     )
+
+@app.post('/update_personality_description')
+async def update_personality_description(
+    update_data: UpdatePersonalityDescription,
+    current_user: dict = Depends(get_current_user)
+):
+    nama = update_data.Nama
+    deskripsi_kepribadian = update_data.Deskripsi_Kepribadian
+
+    # Find the user by name
+    for person in personality_data['personality']:
+        if person['Nama'] == nama:
+            # Update the Deskripsi_Kepribadian for the user
+            person['Deskripsi_Kepribadian'] = deskripsi_kepribadian
+
+            # Update the Kombinasi_Fragrance based on Deskripsi_Kepribadian
+            person['Kombinasi_Fragrance'] = []  # Clear existing values
+
+            # Iterate through notes to find matching fragrances
+            for desc in deskripsi_kepribadian:
+                for note in notes_data['notes']:
+                    if note['Deskripsi_Kepribadian'] == desc:
+                        person['Kombinasi_Fragrance'].append(note['Kombinasi_Fragrance'])
+
+            # Save the updated data to the JSON file
+            with open(personality_json_filename, "w") as write_file:
+                json.dump(personality_data, write_file)
+
+            return {"message": f"Deskripsi Kepribadian for {nama} updated successfully.", "Kombinasi_Fragrance": person['Kombinasi_Fragrance']}
+
+    raise HTTPException(
+        status_code=404, detail=f'Person not found with the name: {nama}'
+    )
+
 
 @app.delete('/personality/{item_id}')
 async def delete_personality(
