@@ -82,7 +82,7 @@ async def add_personality(
     item_dict = item.dict()
     item_found = False
     for person in personality_data['personality']:
-        if person['Id'] == item_dict['Umur']:
+        if person['Id'] == item_dict['Id']:
             item_found = True
             return f"Person with Age {item_dict['Umur']} exists."
 
