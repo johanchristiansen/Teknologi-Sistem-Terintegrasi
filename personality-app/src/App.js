@@ -5,7 +5,7 @@ import useAuth from './hooks/useAuth';
 import Login from './components/Login';
 import Register from './components/Register';
 import UpdatePersonality from './components/UpdatePersonality';
-import FragranceList from './components/FragrangeList';
+import FragranceList from './components/FragranceList';
 
 const App = () => {
   const { isLoggedIn } = useAuth();
