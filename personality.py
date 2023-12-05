@@ -86,6 +86,10 @@ async def read_item():
 async def read_all_personality(current_user: dict = Depends(get_current_user)):
     return personality_data['personality']
 
+@app.get('/notes')
+async def read_all_notes(current_user: dict = Depends(get_current_user)):
+    return notes_data['notes']
+
 @app.get('/personality/{item_id}')
 async def read_personality(item_id: int, current_user: dict = Depends(get_current_user)):
     for person in personality_data['personality']:
