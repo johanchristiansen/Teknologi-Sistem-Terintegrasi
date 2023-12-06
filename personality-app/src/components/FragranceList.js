@@ -23,6 +23,13 @@ const FragranceList = () => {
     navigate('/update-personality');
   };
 
+  const handleShowRecommendations = (personId,Deskripsi_Kepribadian) => {
+    // Implement navigation or action to show recommended products for the given person
+    navigate(`/product/${Deskripsi_Kepribadian}`)
+    console.log('Show recommendations for', personId);
+    // For example: navigate(`/recommendations/${personId}`);
+  };
+
   return (
     <div>
       <h2>Fragrance Combinations</h2>
@@ -33,6 +40,7 @@ const FragranceList = () => {
             <strong>{person.Nama}</strong> - {person.Kombinasi_Fragrance.length > 0
               ? person.Kombinasi_Fragrance.join(', ')
               : 'Silahkan update kepribadian'}
+            <button onClick={() => handleShowRecommendations(person.Id,person.Deskripsi_Kepribadian)}>Tampilkan produk rekomendasi</button>
           </li>
         ))}
       </ul>

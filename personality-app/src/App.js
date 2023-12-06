@@ -34,7 +34,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/update-personality" element={<ProtectedRoute element={<UpdatePersonality />} />} />
         <Route path="/fragrance-list" element={<ProtectedRoute element={<FragranceList />} />} />
-        <Route path="/product" element={<Product />} />
+        <Route path="/product/:Deskripsi_Kepribadian" element={<Product />} />
       </Routes>
     </Router>
   );
