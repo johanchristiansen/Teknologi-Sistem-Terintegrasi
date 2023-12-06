@@ -1,23 +1,33 @@
 {"notes": [
     {
         "Deskripsi_Kepribadian": "Cool", 
-        "Kombinasi_Fragrance": "Bergamot"
+        "Kombinasi_Fragrance": "Bergamot",
+        "Produk": "Terre d'Hermès Eau Intense Vétiver Eau de Parfum",
+        "Harga":1500000
     }, 
     {
         "Deskripsi_Kepribadian": "Elegant", 
-        "Kombinasi_Fragrance": "Oud"
+        "Kombinasi_Fragrance": "Oud",
+        "Produk": "TOM FORD Oud Wood ",
+        "Harga":2950000
     },
     {
         "Deskripsi_Kepribadian": "Berpikir kritis", 
-        "Kombinasi_Fragrance": "Amber"
+        "Kombinasi_Fragrance": "Amber",
+        "Produk": "Prada Amber",
+        "Harga":4500000
     },
     {
         "Deskripsi_Kepribadian": "Ceria", 
-        "Kombinasi_Fragrance": "Coconut"
+        "Kombinasi_Fragrance": "Coconut",
+        "Produk": "Terre d'Hermès Eau Intense Vétiver Eau de Parfum",
+        "Harga":1500000
     },
     {
         "Deskripsi_Kepribadian": "Energetik", 
-        "Kombinasi_Fragrance": "Caramel"
+        "Kombinasi_Fragrance": "Caramel",
+        "Produk": "Dirty Coconut Eau de Parfum",
+        "Harga":3500000
     }
     ]
 }
