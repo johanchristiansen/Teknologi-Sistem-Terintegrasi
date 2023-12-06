@@ -1,9 +1,10 @@
-// src/components/FragranceList.js
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
 const FragranceList = () => {
   const [fragranceList, setFragranceList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,9 +19,14 @@ const FragranceList = () => {
     fetchData();
   }, []);
 
+  const handleUpdateClick = () => {
+    navigate('/update-personality');
+  };
+
   return (
     <div>
       <h2>Fragrance Combinations</h2>
+      <button onClick={handleUpdateClick}>Update Personality</button>
       <ul>
         {fragranceList.map((person) => (
           <li key={person.Id}>
