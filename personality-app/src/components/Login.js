@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import useAuth from '../hooks/useAuth';
+import axios from 'axios';
+import querystring from "querystringify";
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -13,6 +15,25 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
+      // Login ke layanan eksternal
+      const dataForApiCore = querystring.stringify({
+        // Menggunakan querystring untuk format application/x-www-form-urlencoded
+        username: username,
+        password: password,
+      });
+      const externalResponse = await axios.post('https://loanrecommendationapi.azurewebsites.net/login', dataForApiCore, {
+        // Menggunakan dataForApi2 sebagai data
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded", // Mengatur tipe konten
+        },
+      })
+      const externalToken = externalResponse.data.access_token;
+      localStorage.setItem('externalAccessToken', externalToken);
+
+      // Login ke layanan internal menggunakan api.js
+
+      // Simpan kedua token tersebut
+      localStorage.setItem('externalAccessToken', externalToken);
       const formData = new URLSearchParams();
       formData.append('username', username);
       formData.append('password', password);
@@ -31,15 +52,10 @@ const Login = () => {
       login(access_token);
       
       setNotification('Login successful! Redirecting...');
-      setTimeout(() => navigate('/fragrance-list'), 2000);  // Redirect after 2 seconds
-
+      setTimeout(() => navigate('/fragrance-list'), 2000); 
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        setError('Invalid credentials');
-      } else {
-        setError('An unexpected error occurred');
-      }
-      setNotification('');
+      console.log(error);
+      setError('Login failed. Please check your credentials.');
     }
   };
 

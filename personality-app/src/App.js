@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import UpdatePersonality from './components/UpdatePersonality';
 import FragranceList from './components/FragranceList';
+import Product from './components/Product';
 
 const App = () => {
   const { isLoggedIn } = useAuth();
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/update-personality" element={<ProtectedRoute element={<UpdatePersonality />} />} />
         <Route path="/fragrance-list" element={<ProtectedRoute element={<FragranceList />} />} />
+        <Route path="/product" element={<Product />} />
       </Routes>
     </Router>
   );

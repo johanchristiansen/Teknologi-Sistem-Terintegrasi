@@ -1,32 +1,32 @@
-// src/components/Register.js
 import React, { useState } from 'react';
-import api from '../services/api';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import api from '../services/api'; // Impor instance Axios Anda
 
-const Register = ({ onRegisterSuccess }) => {
+const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [registerError, setRegisterError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     try {
-      const response = await api.post('/register', {
+      // Register di layanan eksternal
+      await axios.post('https://loanrecommendationapi.azurewebsites.net/register', {
         username,
-        password,
+        password
       });
-  
-      setSuccessMessage('Registration successful!');
-      setRegisterError('');
-      // onRegisterSuccess(response.data.access_token);
+
+      // Register di layanan internal menggunakan api.js
+      await api.post('/register', {
+        username,
+        password
+      });
+      
+      // Redirect ke halaman login setelah registrasi berhasil
+      navigate('/login');
     } catch (error) {
-      console.error('Registration error:', error.response);
-  
-      if (error.response && error.response.status === 400) {
-        setRegisterError('Username is already taken. Choose a different username.');
-      } else {
-        setRegisterError('Registration failed. Please try again.');
-      }
-      setSuccessMessage('');
+      setError('Registration failed. Username might already be taken, or there was an error.');
     }
   };
 
@@ -45,8 +45,7 @@ const Register = ({ onRegisterSuccess }) => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button onClick={handleRegister}>Register</button>
-      {registerError && <div style={{ color: 'red' }}>{registerError}</div>}
-      {successMessage && <div style={{ color: 'green' }}>{successMessage}</div>}
+      {error && <div style={{ color: 'red' }}>{error}</div>}
     </div>
   );
 };
