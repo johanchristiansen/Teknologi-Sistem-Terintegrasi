@@ -21,7 +21,7 @@ const Login = () => {
         username: username,
         password: password,
       });
-      const externalResponse = await axios.post('https://loanrecommendationapi.azurewebsites.net/login', dataForApiCore, {
+      const externalResponse = await api.api2.post('/login', dataForApiCore, {
         // Menggunakan dataForApi2 sebagai data
         headers: {
           "Content-Type": "application/x-www-form-urlencoded", // Mengatur tipe konten
@@ -44,12 +44,13 @@ const Login = () => {
         },
       };
 
-      const response = await api.post('/token', formData, config);
+      const response = await api.api1.post('/token', formData, config);
       const { access_token } = response.data;
 
-      api.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
+      api.api1.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
       setError('');
       login(access_token);
+      sessionStorage.setItem('username',username);
       
       setNotification('Login successful! Redirecting...');
       setTimeout(() => navigate('/fragrance-list'), 2000); 

@@ -6,6 +6,8 @@ import Register from './components/Register';
 import UpdatePersonality from './components/UpdatePersonality';
 import FragranceList from './components/FragranceList';
 import Product from './components/Product';
+import FormPinjam from './components/FormPinjam';
+import HasilPinjam from './components/HasilPinjam';
 
 const App = () => {
   const { isLoggedIn } = useAuth();
@@ -35,6 +37,8 @@ const App = () => {
         <Route path="/update-personality" element={<ProtectedRoute element={<UpdatePersonality />} />} />
         <Route path="/fragrance-list" element={<ProtectedRoute element={<FragranceList />} />} />
         <Route path="/product/:Deskripsi_Kepribadian" element={<Product />} />
+        <Route path="/formpinjam" element={<FormPinjam />} />
+        <Route path="/hasilpinjam" element={<HasilPinjam />} />
       </Routes>
     </Router>
   );

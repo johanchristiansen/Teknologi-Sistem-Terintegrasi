@@ -10,7 +10,7 @@ const Product = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await api.get('/notes');
+        const response = await api.api1.get('/notes');
         const filteredProducts = response.data.filter(note => note.Deskripsi_Kepribadian === Deskripsi_Kepribadian);
         // console.log(Deskripsi_Kepribadian);
         // console.log(filteredProducts);

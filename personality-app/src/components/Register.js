@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import api from '../services/api'; // Impor instance Axios Anda
 
 const Register = () => {
@@ -12,13 +11,13 @@ const Register = () => {
   const handleRegister = async () => {
     try {
       // Register di layanan eksternal
-      await axios.post('https://loanrecommendationapi.azurewebsites.net/register', {
+      await api.api2.post('/register', {
         username,
         password
       });
 
       // Register di layanan internal menggunakan api.js
-      await api.post('/register', {
+      await api.api1.post('/register', {
         username,
         password
       });

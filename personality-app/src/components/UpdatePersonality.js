@@ -13,7 +13,7 @@ const UpdatePersonality = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await api.get('/notes');
+        const response = await api.api1.get('/notes');
         setPersonalityNotes(response.data);
       } catch (error) {
         console.error('Error fetching personality notes:', error);
@@ -25,7 +25,7 @@ const UpdatePersonality = () => {
 
   const handleUpdatePersonality = async () => {
     try {
-      await api.post('/update_personality_description', {
+      await api.api1.post('/update_personality_description', {
         Nama: nama,
         Deskripsi_Kepribadian: deskripsiKepribadian.split(',').map((desc) => desc.trim()),
       });
