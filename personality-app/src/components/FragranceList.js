@@ -28,15 +28,11 @@ const FragranceList = () => {
     console.log('Show recommendations for', personId);
   };
 
-  const handlePinjolRecommendationClick = () => {
-    navigate('/formpinjam');
-  };
 
   return (
     <div>
       <h2>Fragrance Combinations</h2>
       <button onClick={handleUpdateClick}>Update Personality</button>
-      <button onClick={handlePinjolRecommendationClick}>Rekomendasi Pinjol</button>
       <ul>
         {fragranceList.map((person) => (
           <li key={person.Id}>
