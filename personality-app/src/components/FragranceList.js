@@ -35,7 +35,7 @@ const FragranceList = () => {
 
   return (
     <div>
-      <h2>Fragrance Combinations</h2>
+      <h2>User Fragrance</h2>
       <button onClick={handleUpdateClick}>Update Personality</button>
       <button onClick={handlelihatpinjol}>Hasil Pinjol</button>
       <ul>
