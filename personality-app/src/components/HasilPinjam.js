@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,8 +12,6 @@ const HasilPinjam = () => {
   const [loanRec, setLoanRec] = useState({});
   const [loanCustomer, setLoanCust] = useState({});
   // const storedToken2 = sessionStorage.getItem('external');
-  const token = localStorage.getItem('externalAccessToken')
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // Implement logic to check username existence using the API

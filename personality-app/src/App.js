@@ -10,7 +10,6 @@ import FormPinjam from './components/FormPinjam';
 import HasilPinjam from './components/HasilPinjam';
 
 const App = () => {
-  const { isLoggedIn } = useAuth();
 
   const ProtectedRoute = ({ element }) => {
     const token = localStorage.getItem("accessToken");

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import useAuth from '../hooks/useAuth';
-import axios from 'axios';
 import querystring from "querystringify";
 
 const Login = () => {
