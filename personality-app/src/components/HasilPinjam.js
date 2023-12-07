@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import api from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 const HasilPinjam = () => {
   const username = sessionStorage.getItem('username');
@@ -8,6 +9,7 @@ const HasilPinjam = () => {
     loan_amount: 0,
     loan_amount_term: 0,
   });
+  const navigate = useNavigate();
   const [loanRec, setLoanRec] = useState({});
   const [loanCustomer, setLoanCust] = useState({});
   // const storedToken2 = sessionStorage.getItem('external');
@@ -63,6 +65,10 @@ const HasilPinjam = () => {
     }));
 
     };
+  
+  const handlePinjolRecommendationClick = () => {
+      navigate('/formpinjam');
+  };
 
   if (!loanCustomer) {
     return (
@@ -75,6 +81,7 @@ const HasilPinjam = () => {
   return (
     <div>
       <h2>Loan Recommendation</h2>
+      <button onClick={handlePinjolRecommendationClick}>Isi Form Pinjol</button>
       <div>
         <table>
           <tbody>
