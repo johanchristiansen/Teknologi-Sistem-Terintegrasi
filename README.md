@@ -1,78 +1,48 @@
-```markdown
-# CusGan - Custom Fragrance App
+# CusGan API & Frontend
 
-## Latar Belakang
+## Deskripsi Singkat
+CusGan adalah aplikasi web yang mengintegrasikan backend API dengan frontend menggunakan FastAPI dan React. Aplikasi ini memungkinkan pengguna untuk mengelola data kepribadian, catatan aroma, dan rekomendasi produk berdasarkan deskripsi kepribadian. Terdapat juga fitur pendaftaran pengguna, autentikasi, dan manajemen pinjaman setelah diintegrasikan dengan layanan loan recommendation.
 
-CusGan adalah aplikasi parfum kustom yang memungkinkan pengguna menciptakan wewangian yang sesuai dengan karakteristik kepribadian mereka. Aplikasi ini menggunakan mikroservis untuk melakukan tes kepribadian dan menentukan kombinasi wewangian yang cocok. Pengguna dapat menambahkan, memperbarui, menghapus, dan melihat profil kepribadian para pelanggan.
+## Fitur
+- **Manajemen Kepribadian**: Update data kepribadian.
+- **Autentikasi Pengguna**: Pendaftaran dan login pengguna.
+- **Rekomendasi Produk**: Berdasarkan deskripsi kepribadian.
+- **Manajemen Pinjaman**: Pengajuan dan rekomendasi pinjaman dengan memanfaatkan layanan loan recommendation
 
-## Autentikasi
+## Persyaratan Teknis
+- **Backend**: FastAPI
+  - Autentikasi OAuth2
+  - JWT untuk manajemen token
+  - CORS middleware
+- **Frontend**: React
+  - Penggunaan `useState` dan `useEffect` Hooks
+  - Navigasi dengan `react-router-dom`
+  - Komunikasi dengan backend melalui Axios
 
-Aplikasi sekarang dilengkapi dengan autentikasi menggunakan token JWT. Untuk mendapatkan token akses, kirim permintaan POST ke [https://customizefragrance.azurewebsites.net/token](https://customizefragrance.azurewebsites.net/token) dengan menyertakan `username` dan `password`. Gunakan token yang diterima dalam header permintaan untuk rute-rute yang dilindungi.
+## Cara Penggunaan
+1. **Instalasi Dependensi**:
+   - Backend: `pip install -r requirements.txt`
+   - Frontend: `npm install`
+2. **Menjalankan Server**:
+   - Backend: `uvicorn main:app --reload`
+   - Frontend: `npm start`
+3. **Autentikasi Pengguna**:
+   - Mendaftar dan login untuk mendapatkan token akses.
+4. **Manajemen Kepribadian dan Rekomendasi Produk**:
+   - Update data kepribadian untuk melihat rekomendasi produk.
+5. **Mengisi Form Pinjaman Online dan Melihat Rekomendasi**:
+   - Tambahkan data kemampuan finansial dan jumlah pinjaman untuk melihat rekomendasi.
+
+## Struktur Data
+- **PersonalityItem**:
+  - Nama, Id, Umur, Pekerjaan, Deskripsi_Kepribadian, Kombinasi_Fragrance
+- **UserRegistration**:
+  - username, password
+- **NotesItem**:
+  - Deskripsi_Kepribadian, Kombinasi_Fragrance, Produk, Harga
 
 ## Endpoint API
-
-### Mengambil Kepribadian Spesifik
-
-```bash
-GET /personality/{item_id}
-```
-
-Mengembalikan informasi kepribadian berdasarkan ID. Memerlukan token akses.
-
-### Menambahkan Kepribadian Baru
-
-```bash
-POST /personality
-```
-
-Menambahkan profil kepribadian baru. Memerlukan token akses.
-
-Contoh payload JSON:
-
-```json
-{
-  "Nama": "John Doe",
-  "Id": 3,
-  "Umur": 25,
-  "Pekerjaan": "Developer",
-  "Deskripsi_Kepribadian": ["Friendly", "Innovative"],
-  "Kombinasi_Fragrance": ["Lavender", "Vanilla"]
-}
-```
-
-### Memperbarui Kepribadian
-
-```bash
-PUT /personality
-```
-
-Memperbarui profil kepribadian berdasarkan ID. Memerlukan token akses.
-
-Contoh payload JSON:
-
-```json
-{
-  "Nama": "John Doe",
-  "Id": 3,
-  "Umur": 25,
-  "Pekerjaan": "Senior Developer",
-  "Deskripsi_Kepribadian": ["Friendly", "Innovative", "Experienced"],
-  "Kombinasi_Fragrance": ["Lavender", "Sandalwood"]
-}
-```
-
-### Menghapus Kepribadian
-
-```bash
-DELETE /personality/{item_id}
-```
-
-Menghapus profil kepribadian berdasarkan ID. Memerlukan token akses.
-
-## Tes Penggunaan dengan Postman
-
-Anda dapat menggunakan Postman untuk menguji endpoint-endpoint API dengan mudah. Pastikan Anda sudah mendapatkan token akses melalui endpoint `/token` dan menyertakannya dalam header setiap permintaan yang memerlukan autentikasi.
-
----
-
-Terima kasih telah menggunakan CusGan! Jika Anda memiliki pertanyaan atau masukan, jangan ragu untuk menghubungi kami.
+- `/personality`: GET, POST, PUT, DELETE
+- `/notes`: GET
+- `/register`: POST
+- `/token`: POST (Login)
